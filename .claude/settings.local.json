@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx npm-check-updates:*)",
+      "Bash(bun install:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx shadcn@latest init:*)",
+      "Bash(npx:*)",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)",
+      "Bash(pkill:*)",
+      "Bash(rg:*)"
+    ],
+    "deny": []
+  }
+}
