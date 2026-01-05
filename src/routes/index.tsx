@@ -24,7 +24,7 @@ export const Route = createFileRoute('/')({
               <Github className="mr-2 h-4 w-4" />
               Get Started
             </Button>
-            <Button variant="outline" size="lg">
+            <Button size="lg">
               <BookOpen className="mr-2 h-4 w-4" />
               Documentation
             </Button>
