@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "postToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_FILE\" == *.ts || \"$CLAUDE_FILE\" == *.tsx ]]; then cd $(git rev-parse --show-toplevel) && bunx tsc --noEmit --pretty 2>&1 | tail -5; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/bug-review.sh",
+            "timeout": 30,
+            "statusMessage": "Running bug review on commit..."
+          }
+        ]
+      }
+    ]
+  }
+}
