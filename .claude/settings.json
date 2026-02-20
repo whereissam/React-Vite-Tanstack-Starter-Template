@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "postToolUse": [
+    "PostToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [
@@ -9,9 +9,7 @@
             "command": "if [[ \"$CLAUDE_FILE\" == *.ts || \"$CLAUDE_FILE\" == *.tsx ]]; then cd $(git rev-parse --show-toplevel) && bunx tsc --noEmit --pretty 2>&1 | tail -5; fi"
           }
         ]
-      }
-    ],
-    "PostToolUse": [
+      },
       {
         "matcher": "Bash(git commit*)",
         "hooks": [
