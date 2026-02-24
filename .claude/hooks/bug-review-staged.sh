@@ -1,28 +1,22 @@
 #!/bin/bash
-# Bug review hook — runs after git commit (PostToolUse)
-# Launches headless claude -p to review the commit, with progress spinner
+# Bug review hook — runs after git add (PostToolUse)
+# Launches headless claude -p to review staged changes, with progress spinner
 # Saves review to file, returns short JSON so Claude reads + presents it
 
 set -euo pipefail
 
-COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null)
-if [ -z "$COMMIT_HASH" ]; then
+STAGED_FILES=$(git diff --cached --name-only 2>/dev/null | grep -E '\.(py|ts|tsx|js|jsx|rs|swift)$' || true)
+
+if [ -z "$STAGED_FILES" ]; then
   exit 0
 fi
 
-DIFF_CMD="git diff ${COMMIT_HASH}~1 ${COMMIT_HASH}"
-COMMIT_INFO=$(git log -1 --oneline "$COMMIT_HASH" 2>/dev/null)
-CHANGED_FILES=$($DIFF_CMD --name-only 2>/dev/null | grep -E '\.(py|ts|tsx|js|jsx|rs|swift)$' || true)
+FILE_COUNT=$(echo "$STAGED_FILES" | wc -l | tr -d ' ')
+DIFF_LINES=$(git diff --cached --stat 2>/dev/null | tail -1 | grep -oE '[0-9]+ insertion|[0-9]+ deletion' | awk '{s+=$1} END{print s+0}')
+FILE_LIST=$(echo "$STAGED_FILES" | sed 's/^/  - /')
+DIFF_SUMMARY=$(git diff --cached --stat 2>/dev/null)
 
-if [ -z "$CHANGED_FILES" ]; then
-  exit 0
-fi
-
-FILE_COUNT=$(echo "$CHANGED_FILES" | wc -l | tr -d ' ')
-DIFF_LINES=$($DIFF_CMD --stat 2>/dev/null | tail -1 | grep -oE '[0-9]+ insertion|[0-9]+ deletion' | awk '{s+=$1} END{print s+0}')
-FILE_LIST=$(echo "$CHANGED_FILES" | sed 's/^/  - /')
-
-REVIEW_FILE="/tmp/bug-review-commit.md"
+REVIEW_FILE="/tmp/bug-review-staged.md"
 
 # Progress spinner (writes to stderr)
 spin_pid=""
@@ -37,7 +31,7 @@ start_spinner() {
     local mins=$(( elapsed / 60 ))
     local secs=$(( elapsed % 60 ))
     for frame in "${frames[@]}"; do
-      printf "\r  ${frame} Bug review: ${FILE_COUNT} files, ~${DIFF_LINES} lines... %dm%02ds (Ctrl+C to cancel)" "$mins" "$secs" >&2
+      printf "\r  ${frame} Bug review: ${FILE_COUNT} staged files, ~${DIFF_LINES} lines... %dm%02ds (Ctrl+C to cancel)" "$mins" "$secs" >&2
       sleep 0.1
       elapsed=$(( SECONDS - start_time ))
       mins=$(( elapsed / 60 ))
@@ -77,15 +71,16 @@ PROMPT_FILE=$(mktemp)
 REVIEW_TMPFILE=$(mktemp)
 
 cat > "$PROMPT_FILE" <<EOF
-You are a senior code reviewer performing a bug review on a git commit.
+You are a senior code reviewer performing a bug review on staged changes (pre-commit).
 
-Commit: ${COMMIT_INFO}
-
-Changed files:
+Staged files:
 ${FILE_LIST}
 
+Diff summary:
+${DIFF_SUMMARY}
+
 Instructions:
-1. Run \`$DIFF_CMD\` to see the full diff
+1. Run \`git diff --cached\` to see the full staged diff
 2. For each changed code file, also read the full file to understand context
 
 3. **Trace the dependency chain** — this is critical:
@@ -112,7 +107,7 @@ Instructions:
 
 5. Output a structured review:
 
-## Bug Review: ${COMMIT_INFO}
+## Bug Review: Staged Changes
 
 ### Issues Found
 (list each issue with severity: critical/warning/info, file, line, and description)
