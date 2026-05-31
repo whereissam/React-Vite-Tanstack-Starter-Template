@@ -8,11 +8,12 @@ A modern React starter template with TypeScript, Vite, TanStack Router, TanStack
 - ⚛️ **React 19** - Latest React with modern features
 - 🔷 **TypeScript** - Type safety and better DX
 - 🎨 **TailwindCSS v4** - Utility-first CSS framework
-- 🧩 **shadcn/ui** - Beautiful, accessible components
+- 🧩 **shadcn/ui** - Beautiful, accessible components (on **Base UI** primitives)
 - 🚦 **TanStack Router** - Type-safe routing
 - 🔄 **TanStack React Query** - Data fetching and caching
 - 🎯 **React Router DOM** - Additional routing capabilities
 - 📏 **ESLint** - Code linting and formatting
+- 🧪 **Vitest** - Unit testing with Testing Library
 
 ## Getting Started
 
@@ -47,19 +48,23 @@ npm run dev
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+- `npm run test` - Run the test suite once
+- `npm run test:watch` - Run tests in watch mode
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   └── ui/              # shadcn/ui components
+│   └── ui/              # shadcn/ui components (Base UI primitives)
 ├── lib/
 │   └── utils.ts         # Utility functions
 ├── pages/               # Page components
 ├── routes/              # TanStack Router file-based routes
 │   ├── __root.tsx       # Root route
 │   └── index.tsx        # Home route
+├── test/
+│   └── setup.ts         # Vitest + Testing Library setup
 ├── App.tsx
 ├── main.tsx
 └── index.css
@@ -75,17 +80,28 @@ src/
 - **React Router DOM** - Additional routing utilities
 - **TailwindCSS v4** - Utility-first CSS framework
 - **shadcn/ui** - Component library
-- **Radix UI** - Headless UI primitives
+- **Base UI** - Headless UI primitives (the actively-maintained successor to Radix, from the same creators)
 - **Lucide React** - Icon library
+- **Vitest** + **Testing Library** - Unit testing
 
 ## Adding Components
 
-Add new shadcn/ui components:
+This template uses shadcn/ui on **Base UI** primitives. Pass `--base base` so the
+CLI installs the Base UI versions of components:
 
 ```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
+bunx shadcn@latest add button --base base
+bunx shadcn@latest add card --base base
 ```
+
+> **Note:** Base UI replaces Radix's `asChild` prop with a `render` prop. To change
+> a component's underlying element, pass an element to `render` instead of using
+> `asChild`:
+>
+> ```tsx
+> // Before (Radix):  <Button asChild><a href="/">Home</a></Button>
+> // After (Base UI):  <Button render={<a href="/" />}>Home</Button>
+> ```
 
 ## Routing
 

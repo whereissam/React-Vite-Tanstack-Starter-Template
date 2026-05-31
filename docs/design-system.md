@@ -4,7 +4,7 @@ This project uses a shadcn-style semantic token system with a warm neutral palet
 
 ## Foundations
 
-- Stack: Tailwind CSS v4 + shadcn/ui + Radix UI
+- Stack: Tailwind CSS v4 + shadcn/ui + Base UI
 - Theme model: CSS variables in `src/index.css` with light/dark mode
 - Dark mode trigger: `.dark` class on `<html>`
 - Semantic-first styling: use tokens like `bg-background`, `text-foreground`, `bg-primary` instead of raw color values
