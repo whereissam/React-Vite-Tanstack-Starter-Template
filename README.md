@@ -11,7 +11,6 @@ A modern React starter template with TypeScript, Vite, TanStack Router, TanStack
 - 🧩 **shadcn/ui** - Beautiful, accessible components (on **Base UI** primitives)
 - 🚦 **TanStack Router** - Type-safe routing
 - 🔄 **TanStack React Query** - Data fetching and caching
-- 🎯 **React Router DOM** - Additional routing capabilities
 - 📏 **ESLint** - Code linting and formatting
 - 🧪 **Vitest** - Unit testing with Testing Library
 
@@ -77,7 +76,6 @@ src/
 - **Vite** - Build tool and dev server
 - **TanStack Router** - Type-safe routing with file-based routing
 - **TanStack React Query** - Server state management
-- **React Router DOM** - Additional routing utilities
 - **TailwindCSS v4** - Utility-first CSS framework
 - **shadcn/ui** - Component library
 - **Base UI** - Headless UI primitives (the actively-maintained successor to Radix, from the same creators)
