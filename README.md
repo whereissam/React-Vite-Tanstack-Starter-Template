@@ -1,134 +1,140 @@
-# React Vite TanStack Starter Template
+<div align="center">
 
-A modern React starter template with TypeScript, Vite, TanStack Router, TanStack React Query, TailwindCSS v4, and shadcn/ui components.
+# React · Vite · TanStack Starter
+
+A modern, type-safe React starter template — **Vite**, **TanStack Router & Query**, **TailwindCSS v4**, and **shadcn/ui** on **Base UI** primitives.
+
+[![CI](https://github.com/whereissam/React-Vite-Tanstack-Starter-Template/actions/workflows/ci.yml/badge.svg)](https://github.com/whereissam/React-Vite-Tanstack-Starter-Template/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white)
+
+</div>
+
+---
 
 ## Features
 
-- ⚡️ **Vite** - Lightning fast build tool
-- ⚛️ **React 19** - Latest React with modern features
-- 🔷 **TypeScript** - Type safety and better DX
-- 🎨 **TailwindCSS v4** - Utility-first CSS framework
-- 🧩 **shadcn/ui** - Beautiful, accessible components (on **Base UI** primitives)
-- 🚦 **TanStack Router** - Type-safe routing
-- 🔄 **TanStack React Query** - Data fetching and caching
-- 📏 **ESLint** - Code linting and formatting
-- 🧪 **Vitest** - Unit testing with Testing Library
+- **Vite 6** — lightning-fast dev server and build
+- **React 19** — the latest React with modern features
+- **TypeScript** — strict, end-to-end type safety
+- **TailwindCSS v4** — utility-first styling via the new Vite plugin
+- **shadcn/ui** — beautiful, accessible components on **Base UI** primitives
+- **TanStack Router** — type-safe, file-based routing
+- **TanStack Query** — data fetching, caching, and server state
+- **Vitest** — unit testing with Testing Library
+- **ESLint** — code quality out of the box
+- **CI** — GitHub Actions running lint, test, and build
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
+> Click **["Use this template"](https://github.com/whereissam/React-Vite-Tanstack-Starter-Template/generate)** on GitHub to start a new repo from this starter.
 
-- Node.js 20.19.0+ or 22.12.0+
-- npm, yarn, or bun
-
-### Installation
-
-1. Clone the repository:
 ```bash
-git clone <repository-url>
+# 1. Clone (or use the template button above)
+git clone https://github.com/whereissam/React-Vite-Tanstack-Starter-Template.git
 cd React-Vite-Tanstack-Starter-Template
+
+# 2. Install dependencies
+bun install
+
+# 3. Start the dev server
+bun run dev
 ```
 
-2. Install dependencies:
+Then open **[http://localhost:5173](http://localhost:5173)**.
+
+> **Prerequisites:** [Bun](https://bun.sh) 1.0+ (Node.js 20.19+ / 22.12+ also works for the toolchain).
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `bun run dev` | Start the development server |
+| `bun run build` | Type-check and build for production |
+| `bun run preview` | Preview the production build |
+| `bun run lint` | Run ESLint |
+| `bun run test` | Run the test suite once |
+| `bun run test:watch` | Run tests in watch mode |
+
+## Components
+
+This template ships with `button`, `card`, and `input` from **shadcn/ui**, built on **Base UI** primitives. Add more with the CLI — pass `--base base` so it installs the Base UI versions:
+
 ```bash
-npm install
+bunx shadcn@latest add dialog --base base
+bunx shadcn@latest add dropdown-menu --base base
 ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run test` - Run the test suite once
-- `npm run test:watch` - Run tests in watch mode
+> **Migrating from Radix?** Base UI replaces the `asChild` prop with a `render` prop.
+> To change a component's underlying element, pass an element to `render`:
+>
+> ```tsx
+> // Radix:    <Button asChild><a href="/">Home</a></Button>
+> // Base UI:  <Button render={<a href="/" />}>Home</Button>
+> ```
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   └── ui/              # shadcn/ui components (Base UI primitives)
+│   ├── ui/              # shadcn/ui components (Base UI primitives)
+│   └── ...              # app-level components (nav, theme, etc.)
 ├── lib/
-│   └── utils.ts         # Utility functions
-├── pages/               # Page components
+│   └── utils.ts         # cn() and other helpers
 ├── routes/              # TanStack Router file-based routes
-│   ├── __root.tsx       # Root route
-│   └── index.tsx        # Home route
+│   ├── __root.tsx       # Root layout route
+│   └── index.tsx        # Home route (/)
 ├── test/
 │   └── setup.ts         # Vitest + Testing Library setup
-├── App.tsx
-├── main.tsx
-└── index.css
+├── main.tsx             # App entry
+└── index.css            # Tailwind + design tokens
 ```
 
 ## Tech Stack
 
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **TanStack Router** - Type-safe routing with file-based routing
-- **TanStack React Query** - Server state management
-- **TailwindCSS v4** - Utility-first CSS framework
-- **shadcn/ui** - Component library
-- **Base UI** - Headless UI primitives (the actively-maintained successor to Radix, from the same creators)
-- **Lucide React** - Icon library
-- **Vitest** + **Testing Library** - Unit testing
-
-## Adding Components
-
-This template uses shadcn/ui on **Base UI** primitives. Pass `--base base` so the
-CLI installs the Base UI versions of components:
-
-```bash
-bunx shadcn@latest add button --base base
-bunx shadcn@latest add card --base base
-```
-
-> **Note:** Base UI replaces Radix's `asChild` prop with a `render` prop. To change
-> a component's underlying element, pass an element to `render` instead of using
-> `asChild`:
->
-> ```tsx
-> // Before (Radix):  <Button asChild><a href="/">Home</a></Button>
-> // After (Base UI):  <Button render={<a href="/" />}>Home</Button>
-> ```
+| Layer | Tools |
+| --- | --- |
+| **Framework** | React 19, TypeScript |
+| **Build** | Vite 6 |
+| **Routing** | TanStack Router (file-based) |
+| **Data** | TanStack Query |
+| **Styling** | TailwindCSS v4, `class-variance-authority`, `tailwind-merge` |
+| **Components** | shadcn/ui on Base UI, Lucide icons |
+| **Testing** | Vitest, Testing Library |
+| **Quality** | ESLint, GitHub Actions CI |
 
 ## Routing
 
-This template uses TanStack Router with file-based routing. Add new routes by creating files in the `src/routes/` directory:
+Routing is file-based via TanStack Router — add a file in `src/routes/` and the route tree is generated automatically:
 
-- `src/routes/index.tsx` - Home page (/)
-- `src/routes/about.tsx` - About page (/about)
-- `src/routes/blog/index.tsx` - Blog index (/blog)
-- `src/routes/blog/$slug.tsx` - Blog post (/blog/my-post)
+| File | Route |
+| --- | --- |
+| `src/routes/index.tsx` | `/` |
+| `src/routes/about.tsx` | `/about` |
+| `src/routes/blog/index.tsx` | `/blog` |
+| `src/routes/blog/$slug.tsx` | `/blog/:slug` |
 
 ## Styling
 
-TailwindCSS v4 is configured with the new PostCSS plugin. The configuration supports:
+TailwindCSS v4 is wired through the Vite plugin and a semantic design-token system (see [`docs/design-system.md`](./docs/design-system.md)). It supports:
 
-- Custom CSS variables
+- CSS-variable design tokens with light/dark mode
 - Component variants with `class-variance-authority`
-- Utility merging with `tailwind-merge`
-- Animations with `tailwindcss-animate`
+- Class merging with `tailwind-merge`
 
-## Development
+## Testing
 
-The template includes:
+Unit tests run on **Vitest** with **Testing Library** in a jsdom environment. Tests live next to the code they cover (e.g. `src/components/ui/button.test.tsx`):
 
-- Hot module replacement (HMR) with React Fast Refresh
-- TypeScript type checking
-- ESLint for code quality
-- TanStack Router DevTools (development only)
-- Automatic route generation
+```bash
+bun run test         # run once
+bun run test:watch   # watch mode
+```
 
 ## License
 
-MIT License - feel free to use this template for your projects!
+Released under the **MIT License** — free to use for personal and commercial projects.
