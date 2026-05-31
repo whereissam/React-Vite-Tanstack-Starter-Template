@@ -23,6 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local Claude Code settings
-.claude/settings.json
-.claude/settings.local.json
+# Local Claude Code config (hooks, skills, settings)
+.claude/
