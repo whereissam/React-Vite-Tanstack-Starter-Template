@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest"
-import { render, screen } from "@testing-library/react"
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
 
 import {
   Card,
@@ -8,10 +8,10 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "./card"
+} from './card'
 
-describe("Card", () => {
-  it("renders its composed sections", () => {
+describe('Card', () => {
+  it('renders its composed sections', () => {
     render(
       <Card>
         <CardHeader>
@@ -20,18 +20,18 @@ describe("Card", () => {
         </CardHeader>
         <CardContent>Body</CardContent>
         <CardFooter>Footer</CardFooter>
-      </Card>
+      </Card>,
     )
 
-    expect(screen.getByText("Title")).toBeInTheDocument()
-    expect(screen.getByText("Description")).toBeInTheDocument()
-    expect(screen.getByText("Body")).toBeInTheDocument()
-    expect(screen.getByText("Footer")).toBeInTheDocument()
+    expect(screen.getByText('Title')).toBeInTheDocument()
+    expect(screen.getByText('Description')).toBeInTheDocument()
+    expect(screen.getByText('Body')).toBeInTheDocument()
+    expect(screen.getByText('Footer')).toBeInTheDocument()
   })
 
-  it("merges a custom className onto the root", () => {
+  it('merges a custom className onto the root', () => {
     render(<Card className="custom-card">Content</Card>)
-    const root = screen.getByText("Content")
-    expect(root).toHaveClass("custom-card", "rounded-xl", "border")
+    const root = screen.getByText('Content')
+    expect(root).toHaveClass('custom-card', 'rounded-xl', 'border')
   })
 })
