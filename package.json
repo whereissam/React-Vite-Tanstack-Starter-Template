@@ -16,7 +16,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install || true"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
