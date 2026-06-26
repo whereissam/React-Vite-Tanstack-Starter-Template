@@ -1,0 +1,35 @@
+# React · Vite · TanStack Starter
+
+> A modern, type-safe React starter template built for the AI-coding era:
+> Vite, TanStack Router & Query, TailwindCSS v4, and shadcn/ui on Base UI
+> primitives — with agent-native conventions and pre-commit guardrails.
+
+This file follows the [llms.txt](https://llmstxt.org) convention: a concise map
+for AI agents. Full conventions are in AGENTS.md.
+
+## Stack
+
+- React 19 + TypeScript (strict)
+- Vite (build/dev)
+- TanStack Router (file-based routing, `src/routes/`)
+- TanStack Query (server state)
+- TailwindCSS v4 + shadcn/ui on Base UI primitives
+- Vitest + Testing Library (jsdom)
+
+## Conventions
+
+- [AGENTS.md](./AGENTS.md): canonical conventions, commands, structure, checklist
+- Use `bun`/`bunx`, never `npm`/`npx`
+- Run `bun run verify` (lint + typecheck + format + test + build) before "done"
+- `src/routeTree.gen.ts` is generated — never edit by hand
+
+## Entry points
+
+- `src/main.tsx`: app entry
+- `src/routes/__root.tsx`: root layout
+- `src/index.css`: Tailwind + design tokens
+
+## Optional
+
+- [README.md](./README.md): human-facing setup and feature docs
+- [docs/design-system.md](./docs/design-system.md): styling and design tokens

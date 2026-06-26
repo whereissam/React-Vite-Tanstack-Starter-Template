@@ -1,0 +1,7 @@
+# lefthook pre-commit hooks — run lint + format on staged files only.
+# Installed automatically via the `prepare` script on `bun install`.
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      run: bunx lint-staged

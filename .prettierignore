@@ -1,0 +1,4 @@
+dist
+node_modules
+bun.lockb
+src/routeTree.gen.ts

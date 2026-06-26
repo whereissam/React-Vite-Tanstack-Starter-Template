@@ -25,8 +25,10 @@ A modern, type-safe React starter template — **Vite**, **TanStack Router & Que
 - **TanStack Router** — type-safe, file-based routing
 - **TanStack Query** — data fetching, caching, and server state
 - **Vitest** — unit testing with Testing Library
-- **ESLint** — code quality out of the box
-- **CI** — GitHub Actions running lint, test, and build
+- **ESLint + Prettier** — linting and formatting (Tailwind class sorting) out of the box
+- **AI-agent ready** — `AGENTS.md`, `llms.txt`, and `.mcp.json` so AI tools work productively in this repo
+- **Pre-commit hooks** — lefthook + lint-staged auto-fix staged files
+- **CI + Dependabot** — GitHub Actions (lint, typecheck, format, test, build) and weekly dependency updates
 
 ## Quick Start
 
@@ -50,14 +52,19 @@ Then open **[http://localhost:5173](http://localhost:5173)**.
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `bun run dev` | Start the development server |
-| `bun run build` | Type-check and build for production |
-| `bun run preview` | Preview the production build |
-| `bun run lint` | Run ESLint |
-| `bun run test` | Run the test suite once |
-| `bun run test:watch` | Run tests in watch mode |
+| Command                | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| `bun run dev`          | Start the development server                        |
+| `bun run build`        | Type-check and build for production                 |
+| `bun run preview`      | Preview the production build                        |
+| `bun run lint`         | Run ESLint                                          |
+| `bun run typecheck`    | Type-check only (`tsc --noEmit`)                    |
+| `bun run format`       | Format all files with Prettier                      |
+| `bun run format:check` | Check formatting without writing                    |
+| `bun run check`        | Lint + typecheck + format check                     |
+| `bun run verify`       | Full gate: check + test + build (run before "done") |
+| `bun run test`         | Run the test suite once                             |
+| `bun run test:watch`   | Run tests in watch mode                             |
 
 ## Components
 
@@ -96,26 +103,26 @@ src/
 
 ## Tech Stack
 
-| Layer | Tools |
-| --- | --- |
-| **Framework** | React 19, TypeScript |
-| **Build** | Vite 6 |
-| **Routing** | TanStack Router (file-based) |
-| **Data** | TanStack Query |
-| **Styling** | TailwindCSS v4, `class-variance-authority`, `tailwind-merge` |
-| **Components** | shadcn/ui on Base UI, Lucide icons |
-| **Testing** | Vitest, Testing Library |
-| **Quality** | ESLint, GitHub Actions CI |
+| Layer          | Tools                                                        |
+| -------------- | ------------------------------------------------------------ |
+| **Framework**  | React 19, TypeScript                                         |
+| **Build**      | Vite 6                                                       |
+| **Routing**    | TanStack Router (file-based)                                 |
+| **Data**       | TanStack Query                                               |
+| **Styling**    | TailwindCSS v4, `class-variance-authority`, `tailwind-merge` |
+| **Components** | shadcn/ui on Base UI, Lucide icons                           |
+| **Testing**    | Vitest, Testing Library                                      |
+| **Quality**    | ESLint, Prettier, lefthook, GitHub Actions CI, Dependabot    |
 
 ## Routing
 
 Routing is file-based via TanStack Router — add a file in `src/routes/` and the route tree is generated automatically:
 
-| File | Route |
-| --- | --- |
-| `src/routes/index.tsx` | `/` |
-| `src/routes/about.tsx` | `/about` |
-| `src/routes/blog/index.tsx` | `/blog` |
+| File                        | Route         |
+| --------------------------- | ------------- |
+| `src/routes/index.tsx`      | `/`           |
+| `src/routes/about.tsx`      | `/about`      |
+| `src/routes/blog/index.tsx` | `/blog`       |
 | `src/routes/blog/$slug.tsx` | `/blog/:slug` |
 
 ## Styling
@@ -134,6 +141,23 @@ Unit tests run on **Vitest** with **Testing Library** in a jsdom environment. Te
 bun run test         # run once
 bun run test:watch   # watch mode
 ```
+
+## AI-Agent Ready
+
+This template is built to be productive with AI coding tools out of the box:
+
+| File             | Purpose                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `AGENTS.md`      | Canonical conventions read by Cursor, Copilot, Codex, and others  |
+| `CLAUDE.md`      | Pointer to `AGENTS.md` for Claude Code                            |
+| `llms.txt`       | Concise project map in the [llms.txt](https://llmstxt.org) format |
+| `.cursor/rules/` | Cursor rule that defers to `AGENTS.md`                            |
+| `.mcp.json`      | MCP servers (ships with Playwright for UI verification)           |
+
+Guardrails keep AI-generated changes honest: ESLint + Prettier, a **lefthook**
+pre-commit hook that auto-fixes staged files, a `bun run verify` gate (lint +
+typecheck + format + test + build), and **Dependabot** for weekly dependency
+updates.
 
 ## License
 
