@@ -18,8 +18,12 @@
   - [x] Add lefthook + lint-staged pre-commit hook
   - [x] Extend CI with `typecheck` + `format:check`; add `.github/dependabot.yml`
 
+- [x] Major dependency upgrades (vite 6→8, eslint 9→10, TS 5.8→6, lucide 0→1) — `bun audit` now clean
+  - [x] Drop deprecated `baseUrl` from tsconfigs (TS 6)
+  - [x] Add `overrides.vite` to dedupe vite (vitest/@tailwindcss/vite pulled vite 6)
+  - [x] Replace removed `Github` lucide icon with `Rocket`
+
 ## Backlog
 
 - [ ] Add further shadcn/Base UI components on demand (`bunx shadcn@latest add <name> --base base`)
-- [ ] Major dependency upgrades (vite 6→8, eslint 9→10) — clears remaining audit advisories
 - [ ] AI-app on-ramp: streaming Claude example, typed env validation, server function for key safety

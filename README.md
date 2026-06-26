@@ -7,8 +7,8 @@ A modern, type-safe React starter template — **Vite**, **TanStack Router & Que
 [![CI](https://github.com/whereissam/React-Vite-Tanstack-Starter-Template/actions/workflows/ci.yml/badge.svg)](https://github.com/whereissam/React-Vite-Tanstack-Starter-Template/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white)
 
 </div>
@@ -17,7 +17,7 @@ A modern, type-safe React starter template — **Vite**, **TanStack Router & Que
 
 ## Features
 
-- **Vite 6** — lightning-fast dev server and build
+- **Vite 8** — lightning-fast dev server and build
 - **React 19** — the latest React with modern features
 - **TypeScript** — strict, end-to-end type safety
 - **TailwindCSS v4** — utility-first styling via the new Vite plugin
@@ -106,7 +106,7 @@ src/
 | Layer          | Tools                                                        |
 | -------------- | ------------------------------------------------------------ |
 | **Framework**  | React 19, TypeScript                                         |
-| **Build**      | Vite 6                                                       |
+| **Build**      | Vite 8                                                       |
 | **Routing**    | TanStack Router (file-based)                                 |
 | **Data**       | TanStack Query                                               |
 | **Styling**    | TailwindCSS v4, `class-variance-authority`, `tailwind-merge` |

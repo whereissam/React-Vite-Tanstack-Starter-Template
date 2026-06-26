@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
-import { Github, Rocket, Zap, Code, Settings, BookOpen } from 'lucide-react'
+import { Rocket, Zap, Code, Settings, BookOpen } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -21,7 +21,7 @@ export const Route = createFileRoute('/')({
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Button size="lg">
-              <Github className="mr-2 h-4 w-4" />
+              <Rocket className="mr-2 h-4 w-4" />
               Get Started
             </Button>
             <Button size="lg">
