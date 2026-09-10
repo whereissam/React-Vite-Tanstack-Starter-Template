@@ -23,7 +23,15 @@
   - [x] Add `overrides.vite` to dedupe vite (vitest/@tailwindcss/vite pulled vite 6)
   - [x] Replace removed `Github` lucide icon with `Rocket`
 
+- [x] Clear the Dependabot backlog (PRs #3, #12, #13, #14, #17, #18)
+  - [x] Bump `jsdom` 29→30 and `@testing-library/jest-dom` 6→7 (with `bun.lock`)
+  - [x] Bump `actions/checkout` v4→v7 (v4 targets deprecated Node 20)
+  - [x] Switch Dependabot to the `bun` ecosystem so future PRs update `bun.lock`
+  - [x] Hold back TS 7 — `typescript-eslint` still pins `typescript <6.1.0`
+
 ## Backlog
 
 - [ ] Add further shadcn/Base UI components on demand (`bunx shadcn@latest add <name> --base base`)
+- [ ] Adopt TypeScript 7 once `typescript-eslint` supports it (drop the
+      `typescript` major-version ignore in `.github/dependabot.yml`)
 - [ ] AI-app on-ramp: streaming Claude example, typed env validation, server function for key safety
