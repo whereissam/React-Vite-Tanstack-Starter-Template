@@ -1,6 +1,9 @@
 version: 2
 updates:
-  - package-ecosystem: npm
+  # `bun`, not `npm`: this repo locks with bun.lock, and the npm ecosystem
+  # only rewrites package.json — leaving the lockfile stale so CI fails at
+  # `bun install --frozen-lockfile`.
+  - package-ecosystem: bun
     directory: '/'
     schedule:
       interval: weekly
@@ -10,6 +13,12 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # typescript-eslint pins `typescript >=4.8.4 <6.1.0`; TS 7 crashes
+      # `bun run lint`. Drop this once typescript-eslint supports TS 7.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: '/'
